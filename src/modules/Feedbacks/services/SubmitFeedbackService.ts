@@ -13,9 +13,7 @@ export class SubmitFeedbackService {
     private mailAdapter: MailAdapter
   ) {}
 
-  async execute(data: SubmitFeedbackServiceRequest) {
-    const { type, comment, screenshot } = data;
-
+  async execute({ type, comment, screenshot }: SubmitFeedbackServiceRequest) {
     if (!type) {
       throw new Error('Type is required');
     }
