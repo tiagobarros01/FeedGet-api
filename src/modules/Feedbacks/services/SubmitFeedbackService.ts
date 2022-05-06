@@ -1,5 +1,7 @@
-import type { MailAdapter } from '../../Mail/adapters/MailAdapter';
-import type { FeedbacksRepository } from '../repositories/FeedbacksRepository';
+import { MailAdapter } from '~/modules/Mail/adapters/MailAdapter';
+import { AppError } from '~/shared/erros/AppError';
+
+import { FeedbacksRepository } from '../repositories/FeedbacksRepository';
 
 interface SubmitFeedbackServiceRequest {
   type: string;
@@ -14,16 +16,11 @@ export class SubmitFeedbackService {
   ) {}
 
   async execute({ type, comment, screenshot }: SubmitFeedbackServiceRequest) {
-    if (!type) {
-      throw new Error('Type is required');
-    }
-
-    if (!comment) {
-      throw new Error('Comment is required');
-    }
-
     if (screenshot && !screenshot.startsWith('data:image/png;base64')) {
-      throw new Error('Invalid screenshot format');
+      throw new AppError({
+        message: 'Invalid screenshot format',
+        messageCode: 'invalid.screenshot.format',
+      });
     }
 
     await this.feedbacksRepository.create({
@@ -35,11 +32,11 @@ export class SubmitFeedbackService {
     await this.mailAdapter.sendMail({
       subject: 'Novo feedback',
       body: [
-        `<div style="font-family: sans-serif; font-size: 16px; color: #111">`,
+        '<div style="font-family: sans-serif; font-size: 16px; color: #111">',
         `<p>Tipo do feedback: ${type}</p>`,
         `<p>Comentário: ${comment}</p>`,
         screenshot ? `<img src="${screenshot}">` : '',
-        `</div>`,
+        '</div>',
       ].join('\n'),
     });
   }
