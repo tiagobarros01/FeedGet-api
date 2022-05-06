@@ -1,5 +1,5 @@
 import { MailAdapter } from '~/modules/Mail/adapters/MailAdapter';
-import { AppError } from '~/shared/erros/AppError';
+import { AppError } from '~/shared/errors/AppError';
 
 import { FeedbackType } from '../repositories/dtos/FeedbacksDTO';
 import { FeedbacksRepository } from '../repositories/FeedbacksRepository';

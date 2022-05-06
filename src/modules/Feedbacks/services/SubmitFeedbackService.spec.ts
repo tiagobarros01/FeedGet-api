@@ -1,3 +1,4 @@
+import { FeedbackType } from '../repositories/dtos/FeedbacksDTO';
 import { SubmitFeedbackService } from './SubmitFeedbackService';
 
 const createFeedbackSpy = jest.fn();
@@ -29,7 +30,7 @@ describe('business rule', () => {
   it('should not be able to submit a feedback without a type', async () => {
     await expect(
       submitFeedbackService.execute({
-        type: '',
+        type: '' as FeedbackType,
         comment: 'Test comment',
         screenshot: 'data:image/png;base64/teste',
       })
