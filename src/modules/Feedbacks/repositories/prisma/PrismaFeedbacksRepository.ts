@@ -1,6 +1,6 @@
 import { prisma } from '../../../../prisma';
-import { CreateFeedbacksDTO } from '../dtos/FeedbacksDTO';
-import { FeedbacksRepository } from '../FeedbacksRepository';
+import type { CreateFeedbacksDTO } from '../dtos/FeedbacksDTO';
+import type { FeedbacksRepository } from '../FeedbacksRepository';
 
 export class PrismaFeedbacksRepository implements FeedbacksRepository {
   async create({ type, comment, screenshot }: CreateFeedbacksDTO) {

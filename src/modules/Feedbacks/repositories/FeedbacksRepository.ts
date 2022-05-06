@@ -1,4 +1,4 @@
-import { CreateFeedbacksDTO } from './dtos/FeedbacksDTO';
+import type { CreateFeedbacksDTO } from './dtos/FeedbacksDTO';
 
 export interface FeedbacksRepository {
   create(data: CreateFeedbacksDTO): Promise<void>;

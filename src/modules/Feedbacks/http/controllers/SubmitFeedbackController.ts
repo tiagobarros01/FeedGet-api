@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import { NodemailerMailAdapter } from '../../../Mail/adapters/nodemailer/NodemailerMailAdapter';
 import { PrismaFeedbacksRepository } from '../../repositories/prisma/PrismaFeedbacksRepository';
 import { SubmitFeedbackService } from '../../services/SubmitFeedbackService';
