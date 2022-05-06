@@ -1,10 +1,11 @@
 import { MailAdapter } from '~/modules/Mail/adapters/MailAdapter';
 import { AppError } from '~/shared/erros/AppError';
 
+import { FeedbackType } from '../repositories/dtos/FeedbacksDTO';
 import { FeedbacksRepository } from '../repositories/FeedbacksRepository';
 
-interface SubmitFeedbackServiceRequest {
-  type: string;
+interface SubmitFeedbackServiceProps {
+  type: FeedbackType;
   comment: string;
   screenshot?: string;
 }
@@ -15,7 +16,7 @@ export class SubmitFeedbackService {
     private mailAdapter: MailAdapter
   ) {}
 
-  async execute({ type, comment, screenshot }: SubmitFeedbackServiceRequest) {
+  async execute({ type, comment, screenshot }: SubmitFeedbackServiceProps) {
     if (screenshot && !screenshot.startsWith('data:image/png;base64')) {
       throw new AppError({
         message: 'Invalid screenshot format',
