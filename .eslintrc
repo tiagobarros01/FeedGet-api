@@ -13,7 +13,40 @@
     "sourceType": "module"
   },
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "eslint-plugin-import-helpers"
   ],
-  "rules": {}
+  "rules": {
+    "import/prefer-default-export": "off",
+    "no-useless-constructor": "off",
+    "no-unused-vars": "off",
+    "no-empty-function": "off",
+    "import/no-unresolved": "off",
+    "class-methods-use-this": "off",
+    "import/extensions": "off",
+    "no-undef": "off",
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          [
+            "module"
+          ],
+          [
+            "/^~//"
+          ],
+          [
+            "parent",
+            "sibling",
+            "index"
+          ]
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "ignoreCase": true
+        }
+      }
+    ]
+  }
 }
